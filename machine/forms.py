@@ -16,6 +16,10 @@ class TransactionHistoryForm(forms.ModelForm):
 		help_text="Select Currency Deposited"
 	)
 
+	class Media:
+		css = {'all': ('/admin/css/widgets.css', 'admin/css/overrides.css'), }
+		js = ('/admin/jquery.js', '/admin/jsi18n/')
+
 	class Meta:
 		model = TransactionHistory
 		fields = ('product', 'currency')

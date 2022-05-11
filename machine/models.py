@@ -1,22 +1,5 @@
 from django.db import models
 
-# class VendingMachineStates(models.Model):
-#     state = models.CharField(max_length=20)
-#
-#     class Meta:
-#         verbose_name_plural = 'Vending Machine States'
-#
-#     def __str__(self):
-#         return self.state
-#
-# class VendingMachine(models.Model):
-#     current_state = models.ForeignKey(VendingMachineStates, on_delete=models.CASCADE, default=1)
-#
-#     class Meta:
-#         verbose_name_plural = 'Vending Machine'
-#
-#     def __str__(self):
-#         return self.current_state
 
 class Currency(models.Model):
     """
@@ -78,14 +61,14 @@ class TransactionHistory(models.Model):
 
     class Meta:
         """
-        meta data for model Currency
+        meta data for model Transaction History
         """
 
         verbose_name_plural = 'Transaction History'
 
     def __str__(self):
         """
-        returns the value of currency
+        returns the name of the product
         """
 
         return str(self.product.name)

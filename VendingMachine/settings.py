@@ -48,7 +48,18 @@ INSTALLED_APPS = [
     # third party app
     'rest_framework',
     'crispy_forms',
+    'rest_framework.authtoken'
 ]
+
+REST_FRAMEWORK = {
+     'DEFAULT_PERMISSION_CLASSES': (
+         'rest_framework.permissions.IsAuthenticated',
+     ),
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    ],
+}
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
@@ -97,15 +108,6 @@ WSGI_APPLICATION = 'VendingMachine.wsgi.application'
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': config('NAME'),
-#         'USER': config('USER'),
-#         'PASSWORD': config('PASSWORD'),
-#         'PORT': '5432',
-#     }
-# }
 DATABASES = {}
 DATABASES['default'] = dj_database_url.config(conn_max_age=600)
 

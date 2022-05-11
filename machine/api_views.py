@@ -28,9 +28,6 @@ class TransactionHistoryViewset(APIView):
     Transaction History model Viewset
     """
 
-    # queryset = TransactionHistory.objects.all()
-    # serializer_class = TransactionHistorySerializer
-
     def post(self, request):
         """
         used to calculate refund and total amount collected from vendor machine
@@ -46,7 +43,11 @@ class TransactionHistoryViewset(APIView):
                 total_amount = 0
                 for currency_id in currency_list:
                     total_amount += int(Currency.objects.get(id=currency_id).value)
-                if total_amount >= product_price:
+                if product.quantity <= 0:
+                    response_data = {"message": "product not available"}
+                    return Response(response_data,
+                                    status=status.HTTP_400_BAD_REQUEST)
+                elif total_amount >= product_price:
                     refund_amount = total_amount - product_price
                 else:
                     response_data = {"message": "total amount is less than product price"}

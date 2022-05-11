@@ -25,25 +25,8 @@ class ProductSerializer(serializers.ModelSerializer):
 
 class TransactionHistorySerializer(serializers.ModelSerializer):
     """
-    # Transaction History model serializer
-    # """
-    # amount = serializers.IntegerField()
-    # refund = serializers.I
-
-    # def get_amount(self, obj):
-    #     amount = 0
-    #     print(obj.currency.all())
-    #     for currency in obj.currency.all():
-    #         amount = amount + currency.value
-    #     return amount
-    #
-    # def get_refund(self,obj):
-    #     if obj.total_amount:
-    #         product_price = obj.product.price
-    #         refund = obj.total_amount - product_price
-    #         return refund
-    #     else:
-    #         return 0
+    Transaction History model serializer
+    """
 
     class Meta:
         model = TransactionHistory

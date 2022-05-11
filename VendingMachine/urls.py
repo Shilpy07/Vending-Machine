@@ -14,7 +14,9 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import path, include, re_path
+from django.views.i18n import JavaScriptCatalog
+
 from machine.api_views import TransactionHistoryViewset
 from machine.views import transactionCollection
 from machine import apis
@@ -27,7 +29,8 @@ urlpatterns = [
     path('', transactionCollection, name="transactionCollection"),
     path('admin/', admin.site.urls),
     path('api/v1/', include(apis.router.urls)),
-    path('api/v1/transactions', TransactionHistoryViewset.as_view(), name='transaction')
+    path('api/v1/transactions', TransactionHistoryViewset.as_view(), name='transaction'),
+    re_path(r'^jsi18n/$', JavaScriptCatalog.as_view(), name='javascript-catalog')
 ]
 
 urlpatterns += staticfiles_urlpatterns()
